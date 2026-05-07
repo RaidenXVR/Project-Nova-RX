@@ -4,6 +4,7 @@
 
 **Project Nova** is a fully local, real-time AI companion designed to feel persistent, emotionally aware, and interactive.  
 It combines a fine-tuned large language model, long-term memory, expressive text-to-speech, speech recognition, and live 3D avatar control — all optimized to run on consumer hardware.
+---
 ![Nova](./images/nova.png)
 ---
 >### 🔔 Updates
@@ -26,7 +27,7 @@ It combines a fine-tuned large language model, long-term memory, expressive text
 >   - **Contextual Screen Capture:** Nova doesn't waste resources by recording. Instead, she captures a snapshot only when you ask: "Nova, checkout my screen!" or "What's on my screen?.
 >   - **Dual-Source Input:** Seamlessly switch between the Webcam (to see your face/emotions) and the Screen (to see your games, code, or art).
 >   - **Hardware Optimized:** Designed to run alongside high-end games without causing FPS drops.
-
+>
 >### v0.3 — Nova V2
 > - Nova's model has been completely re-trained from the ground up to be more stable, expressive, and structurally sound.
 > - While V1 was successfully fine-tuned to repond in JSON format, it required a System Prompt to guide the model for that behavior. V2 has been deeply trained (455 steps, 0.39 loss) to make JSON and the personality its native language. It now understands the JSON structure at a foundational level, making it more **'alive,'** and **'emotionally expressive'**.
