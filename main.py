@@ -427,12 +427,22 @@ def get_response(user_input):
     else:
         output = chat(model='nova', messages=chat_history, format=waifu_schema, options={"temperature": 0.7})
     try:
-        response_data = json.loads(output.message.content)
-        color_print(f"AI : {response_data['response']}" , Fore.LIGHTMAGENTA_EX)
-        chat_history.append({"role": "assistant", "content": output.message.content})
-        threading.Thread(target=save_to_memory, args=(user_input, response_data["response"]), daemon=True).start()
-        threading.Thread(target=do_agentic_work, args=(user_input,), daemon=True).start()
-        start_tts(response_data["response"], response_data["emotion"])
+        with open("config.json", "r") as f:
+            config = json.loads(f.read())
+            if config["WEB_UI_MODE"] == "ON":
+                response_data = json.loads(output.message.content)
+                chat_history.append({"role": "assistant", "content": output.message.content})
+                threading.Thread(target=save_to_memory, args=(user_input, response_data["response"]), daemon=True).start()
+                threading.Thread(target=do_agentic_work, args=(user_input,), daemon=True).start()
+                return response_data
+            
+            elif config["WEB_UI_MODE"] == "OFF":
+                response_data = json.loads(output.message.content)
+                color_print(f"AI : {response_data['response']}" , Fore.LIGHTMAGENTA_EX)
+                chat_history.append({"role": "assistant", "content": output.message.content})
+                threading.Thread(target=save_to_memory, args=(user_input, response_data["response"]), daemon=True).start()
+                threading.Thread(target=do_agentic_work, args=(user_input,), daemon=True).start()
+                start_tts(response_data["response"], response_data["emotion"])
         if not CHAT_MODE:
             check_to_speak()
 
@@ -812,4 +822,6 @@ def check_chat_or_voice():
         print("Invalid input. Please try again.")
         return check_chat_or_voice()
 if __name__ == "__main__":
+    with open("config.json", "w") as f:
+        json.dump({"WEB_UI_MODE": "OFF"}, f)
     check_chat_or_voice()

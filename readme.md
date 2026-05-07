@@ -4,9 +4,22 @@
 
 **Project Nova** is a fully local, real-time AI companion designed to feel persistent, emotionally aware, and interactive.  
 It combines a fine-tuned large language model, long-term memory, expressive text-to-speech, speech recognition, and live 3D avatar control — all optimized to run on consumer hardware.
-
+![Nova](./images/nova.png)
 ---
 >### 🔔 Updates
+>### v0.5 — Nova Web UI update (Latest)
+> - A simple, clean web interface for **Nova** - your local AI companion.
+> ### Features
+> - **Text Chat**  - Type your messages
+> - **Voice Input** - Toggle mic button , speak naturally
+> - **Real Time Responses** - Nova replies with emotion and memory
+> ### Usage
+> - Type a message and press Enter
+> - Click the Mic button to speak (press again to stop)
+> - Nova responds - conversation continues
+> ### Tech Stack
+> - Gradio (Web UI)
+> - Python (backend Logic) 
 >### v0.4 — Nova Vision update (Latest)
 > - Nova's vision capabilities have been upgraded from simple webcam support to full Environment Awareness. She can now also see your screen.
 > - New **Look** Capabilities:
@@ -14,29 +27,34 @@ It combines a fine-tuned large language model, long-term memory, expressive text
 >   - **Dual-Source Input:** Seamlessly switch between the Webcam (to see your face/emotions) and the Screen (to see your games, code, or art).
 >   - **Hardware Optimized:** Designed to run alongside high-end games without causing FPS drops.
 
->### v0.3 — Nova V2 (Latest)
+>### v0.3 — Nova V2
 > - Nova's model has been completely re-trained from the ground up to be more stable, expressive, and structurally sound.
 > - While V1 was successfully fine-tuned to repond in JSON format, it required a System Prompt to guide the model for that behavior. V2 has been deeply trained (455 steps, 0.39 loss) to make JSON and the personality its native language. It now understands the JSON structure at a foundational level, making it more **'alive,'** and **'emotionally expressive'**.
 > - **Download** the new version from Huggingface - https://huggingface.co/Navpy/phi-3.5-AI-Vtuber-json
 > - For **Ollama** users use the Modelfile which is inside **assistant_modelfile/** folder to get the best results out of the model **(RECOMMENDED)**.
+>
+>
 >### v0.2 — Multimodal Capabilities (Project Nova Vision)
 >- Project Nova is now a **Multimodal AI Agent**. Using a custom-engineered pipeline, Nova can "see" her environment and react in real-time while maintaining her 3D persona.
+>
+>
 >### 🛠️ Technical Architecture
 >- To fit a vision-language model (VLM) alongside a fine-tuned LLM on a limited **4GB RTX 2050**, I implemented a **Sequential Model Offloading** strategy:
-
+>
 > 1. **Intent Trigger:** A keyword-based heuristic (e.g., "Look at this") triggers the vision sequence.
 > 2. **Resource Swapping:** To prevent OOM (Out of Memory) crashes, the system dynamically swaps models between System RAM and GPU VRAM.
 > 3. **Visual Injection:** The resulting image description is injected into Nova's context as **Internal Sensory Data**, allowing her to react naturally without breaking character.
-
+>
 >#### Models Used
 >- **Vision:** `SmolVLM-256M` (Quantized for edge-level performance).
->### v0.1 — Discord Integration (Latest)
+>
+>
+>### v0.1 — Discord Integration
 >- Added **Discord bot support** to chat with Nova remotely
 >- Uses the same **LLM, memory, and personality** system
 >- Secure token handling via **`.env`** (not committed)
 >- Can run alongside the **local voice/avatar version**
 - #### Scroll below to see the instructions for setting up Nova as a Discord Bot. 
-
 ---
 > ⚠️ **Development Disclaimer**
 >
@@ -259,7 +277,7 @@ ollama pull nomic-embed-text
 ```bash
 python main.py
 ```
-#### By default, Project Nova runs in **online mode** to allow automatic downloading of required models (STT, TTS).Once all models are downloaded, you can run Nova fully offline, By setting these environment variables at the top of your code before importing anything.
+#### By default, Project Nova runs in **online mode** to allow automatic downloading of required models (STT, TTS).Once all models are downloaded, you can run Nova fully offline, By setting these environment variables at the top of your code in (***main.py***) and (***web_ui.py***) file before importing anything.
 ```bash
 import os
 # Set offline mode BEFORE any other imports
