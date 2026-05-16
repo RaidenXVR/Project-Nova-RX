@@ -1,3 +1,6 @@
+Forked from [Navjot-Singh7/Project-Nova](https://github.com/Navjot-Singh7/Project-Nova)
+---
+
 # 🌸 Project Nova
 
 ## A Fully Local AI Companion with Memory, Emotion, Voice, Avatar Control, and Agentic Abilities
